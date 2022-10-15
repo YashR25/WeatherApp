@@ -51,7 +51,7 @@ fun WeatherSplashScreen(navController: NavController) {
         )
         )
         delay(3000)
-        navController.navigate(WeatherScreens.HomeScreen.name)
+        navController.navigate(WeatherScreens.MainScreen.name)
 
     })
     androidx.compose.material.Surface(modifier = Modifier

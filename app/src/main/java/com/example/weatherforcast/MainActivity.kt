@@ -3,6 +3,7 @@ package com.example.weatherforcast
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.weatherforcast.navigation.WeatherNavigation
+import com.example.weatherforcast.screens.main.MainViewModel
 import com.example.weatherforcast.ui.theme.WeatherForcastTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,7 +26,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             WeatherApp {
-                WeatherNavigation()
+                val viewModel: MainViewModel by viewModels()
+                WeatherNavigation(viewModel)
             }
         }
     }

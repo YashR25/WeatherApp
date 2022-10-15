@@ -1,13 +1,15 @@
 package com.example.weatherforcast.navigation
 
 enum class WeatherScreens {
-    HomeScreen,
-    WeatherSplashScreen;
+    MainScreen,
+    WeatherSplashScreen,
+    SearchScreen;
     companion object{
         fun getScreen(route: String?) = when(route){
-            HomeScreen.name -> HomeScreen
+            MainScreen.name -> MainScreen
             WeatherSplashScreen.name -> WeatherSplashScreen
-            null -> HomeScreen
+            SearchScreen.name -> SearchScreen
+            null -> MainScreen
             else -> throw java.lang.IllegalArgumentException()
         }
     }
