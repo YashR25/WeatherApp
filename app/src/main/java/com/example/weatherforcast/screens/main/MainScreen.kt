@@ -13,13 +13,9 @@ import com.example.weatherforcast.model.Weather
 @Composable
 fun MainScreen(viewModel: MainViewModel, navController: NavController, city: String?) {
 
-
     val weatherData = produceState<DataOrException<Weather,Boolean,Exception>>(initialValue = DataOrException(loading = true)){
         value = viewModel.getWeatherData(cityName = city!!)
-
     }
-
-
 
     if (weatherData.value.loading == true){
         CircularProgressIndicator()
@@ -28,10 +24,6 @@ fun MainScreen(viewModel: MainViewModel, navController: NavController, city: Str
             MainScaffold(data = it, navController = navController)
         }
     }
-
-
-
-
 
 }
 

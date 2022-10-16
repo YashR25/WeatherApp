@@ -9,8 +9,11 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.weatherforcast.screens.main.MainScreen
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.weatherforcast.screens.about.AboutScreen
+import com.example.weatherforcast.screens.favourite.FavouriteScreen
 import com.example.weatherforcast.screens.main.MainViewModel
 import com.example.weatherforcast.screens.search.SearchScreen
+import com.example.weatherforcast.screens.settings.SettingScreen
 import com.example.weatherforcast.screens.splash.WeatherSplashScreen
 import dagger.hilt.android.lifecycle.HiltViewModel
 
@@ -39,5 +42,18 @@ fun WeatherNavigation() {
         composable(WeatherScreens.SearchScreen.name){
             SearchScreen(navController)
         }
+
+        composable(WeatherScreens.AboutScreen.name){
+            AboutScreen(navController)
+        }
+
+        composable(WeatherScreens.FavouriteScreen.name){
+            FavouriteScreen(navController, favouriteViewModel = hiltViewModel())
+        }
+
+        composable(WeatherScreens.SettingScreen.name){
+            SettingScreen(navController)
+        }
+
     }
 }

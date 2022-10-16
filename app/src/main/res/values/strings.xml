@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">WeatherForcast</string>
+    <string name="about_app">Weather Forecast App _V0.1</string>
+    <string name="abpout_api">https://openweathermap.org/api</string>
 </resources>
