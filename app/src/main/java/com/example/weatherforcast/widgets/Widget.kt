@@ -1,5 +1,6 @@
 package com.example.weatherforcast.widgets
 
+import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -73,27 +74,27 @@ fun WeatherAppBar(
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun SearchBar(
+    modifier: Modifier = Modifier,
     onSearch: (String) -> Unit
 ){
-    val searchQueryState = rememberSaveable() {
+    val searchQueryState = rememberSaveable {
         mutableStateOf("")
     }
     val keyBoardController = LocalSoftwareKeyboardController.current
-    val validState = remember(searchQueryState) {
+    val validState = remember(searchQueryState.value) {
         searchQueryState.value.trim().isNotEmpty()
     }
     Column() {
         CommonTextField(
             valueState = searchQueryState,
             placeHolder = "City",
-            onAction = KeyboardActions {
+            onAction = KeyboardActions(onNext = {
                 if (!validState) return@KeyboardActions
                 onSearch(searchQueryState.value.trim())
                 searchQueryState.value = ""
                 keyBoardController?.hide()
-            },
-
-            )
+            }),
+        )
     }
 }
 

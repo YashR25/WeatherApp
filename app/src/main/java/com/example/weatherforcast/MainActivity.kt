@@ -26,8 +26,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             WeatherApp {
-                val viewModel: MainViewModel by viewModels()
-                WeatherNavigation(viewModel)
+                WeatherNavigation()
             }
         }
     }
