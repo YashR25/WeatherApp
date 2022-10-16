@@ -35,7 +35,7 @@ fun WeatherNavigation() {
         ){navBack->
             navBack.arguments?.getString("city")?.let {city->
                 val viewModel = hiltViewModel<MainViewModel>()
-                MainScreen(viewModel,navController,city)
+                MainScreen(viewModel = viewModel,navController = navController, city = city)
             }
 
         }
@@ -52,7 +52,7 @@ fun WeatherNavigation() {
         }
 
         composable(WeatherScreens.SettingScreen.name){
-            SettingScreen(navController)
+            SettingScreen(navController, hiltViewModel())
         }
 
     }

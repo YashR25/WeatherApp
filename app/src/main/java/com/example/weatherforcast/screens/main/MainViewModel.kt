@@ -1,18 +1,11 @@
 package com.example.weatherforcast.screens.main
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.example.weatherforcast.data.DataOrException
 import com.example.weatherforcast.model.Weather
 import com.example.weatherforcast.repository.WeatherRepository
 
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -37,7 +30,7 @@ class MainViewModel @Inject constructor(private val repository: WeatherRepositor
 
 
 
-    suspend fun getWeatherData(cityName: String): DataOrException<Weather, Boolean, Exception> {
-            return repository.getWeatherInfo(cityName)
+    suspend fun getWeatherData(cityName: String, units: String): DataOrException<Weather, Boolean, Exception> {
+            return repository.getWeatherInfo(cityName,units)
     }
 }

@@ -1,6 +1,5 @@
 package com.example.weatherforcast.components
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Arrangement.Center
 import androidx.compose.foundation.layout.Arrangement.SpaceBetween
@@ -10,8 +9,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
@@ -36,7 +33,7 @@ import com.example.weatherforcast.util.formatDecimals
 import com.example.weatherforcast.widgets.WeatherAppBar
 
 @Composable
-fun MainScaffold(data: Weather,navController: NavController){
+fun MainScaffold(data: Weather, navController: NavController, isImperial: Boolean){
     Scaffold(topBar = {
         WeatherAppBar(
             title = data.city.name + ", ${data.city.country}",
@@ -48,13 +45,13 @@ fun MainScaffold(data: Weather,navController: NavController){
 
         }
     }) {
-        MainContent(data)
+        MainContent(data,isImperial)
     }
 
 }
 
 @Composable
-fun MainContent(data: Weather){
+fun MainContent(data: Weather, isImperial: Boolean){
     
 
     Column(modifier = Modifier
@@ -86,7 +83,7 @@ fun MainContent(data: Weather){
 
         }
 
-        WeatherWindPressureRow(weather = data.list[0])
+        WeatherWindPressureRow(weather = data.list[0],isImperial)
         Divider()
         SunsetAndSunRiseRow(weather = data.list[0])
         Text(text = "This Week",
@@ -172,7 +169,7 @@ fun SunsetAndSunRiseRow(weather: WeatherItem) {
 }
 
 @Composable
-fun WeatherWindPressureRow(weather: WeatherItem) {
+fun WeatherWindPressureRow(weather: WeatherItem, isImperial: Boolean) {
     Row(
         modifier = Modifier
             .padding(12.dp)
@@ -193,7 +190,7 @@ fun WeatherWindPressureRow(weather: WeatherItem) {
         Row(modifier = Modifier.padding(4.dp)) {
             Icon(painter = painterResource(id = R.drawable.wind), contentDescription = "Wind",
                 modifier = Modifier.size(20.dp))
-            Text(text = "${weather.speed} mph", style = MaterialTheme.typography.caption)
+            Text(text = formatDecimals(weather.speed) + if (isImperial) "mph" else "m/s", style = MaterialTheme.typography.caption)
         }
 
     }
